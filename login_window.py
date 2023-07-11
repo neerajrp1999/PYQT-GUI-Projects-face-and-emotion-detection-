@@ -4,7 +4,6 @@ from PyQt5.QtGui import QMouseEvent, QIcon, QPixmap
 
 from ui.login_ui import Ui_Form
 from main_window import MainWindow
-from sql_class import connectMySQL
 import re
 from firebase_admin_tester import *
     
@@ -25,10 +24,11 @@ class LoginWindow(QWidget):
         ## initialize QPushButtons in the login window.
         self.ui.backBtn_register_page.setFocusPolicy(Qt.NoFocus)
         self.ui.registerBtn_register_page.setFocusPolicy(Qt.NoFocus)
-        self.ui.exitBtn.setFocusPolicy(Qt.NoFocus)
-        self.ui.registerBtn.setFocusPolicy(Qt.NoFocus)
-        self.ui.loginBtn.setFocusPolicy(Qt.NoFocus)
-
+        self.ui.exitBtn_login_page.setFocusPolicy(Qt.NoFocus)
+        self.ui.registerBtn_login_page.setFocusPolicy(Qt.NoFocus)
+        self.ui.loginBtn_login_page.setFocusPolicy(Qt.NoFocus)
+        self.ui.send_otp_Btn_register_page.setFocusPolicy(Qt.NoFocus)
+        self.ui.verify_otp_Btn_register_page.setFocusPolicy(Qt.NoFocus)
         ## show login window when start app 
         self.ui.funcWidget.setCurrentIndex(0)
 
@@ -53,15 +53,11 @@ class LoginWindow(QWidget):
             self._tracking = False
             self._startPos = None
             self._endPos = None
-    ## ============================================================================
 
 
-    ## login window //////////////////////////////////////////////////////////////
+    ## login window 
     @pyqtSlot()
-    def on_exitBtn_clicked(self):
-        """
-        function for exit button
-        """
+    def on_exitBtn_login_page_clicked(self):
         msgBox = QMessageBox(self)
         msgBox.setWindowIcon(QIcon("./static/icon/key-6-128.ico"))
         msgBox.setIconPixmap(QPixmap("./static/icon/question-mark-7-48.ico"))
@@ -77,23 +73,20 @@ class LoginWindow(QWidget):
             return
 
     @pyqtSlot()
-    def on_registerBtn_clicked(self):
-        """
-        function for going to register page
-        """
+    def on_registerBtn_login_page_clicked(self):
         self.ui.funcWidget.setCurrentIndex(1)
 
-
-    ## register window ///////////////////////////////////////////////////////////
+    ## register window
     @pyqtSlot()
     def on_backBtn_register_page_clicked(self):
-        """
-        function for going back to login page from register page
-        """
         self.ui.funcWidget.setCurrentIndex(0)
 
     @pyqtSlot()
-    def on_loginBtn_clicked(self):
+    def on_loginBtn_login_page_clicked(self):
+        #main_window = MainWindow(user_id="neerajrp1999@gmail.com")
+        #main_window.show()
+        #self.close()
+        
         username = self.ui.lineEdit.text().strip()
         password = self.ui.lineEdit_2.text().strip()
         if not self.check(username):
@@ -112,7 +105,8 @@ class LoginWindow(QWidget):
             main_window = MainWindow(user_id=username)
             main_window.show()
             self.close()
-            
+        
+        
     @pyqtSlot()
     def on_verify_otp_Btn_register_page_clicked(self):
         otp = self.ui.otp_lineEdit_register_page.text().strip()
@@ -134,7 +128,7 @@ class LoginWindow(QWidget):
         if IsUserAlreadyExist(gmailid):
             self.warning_messagebox(content="User Already Exist..")
             return
-        self.sendMail()
+        self.sendMail(gmailid)
         self.done_messagebox("OTP is sended to your gmail id..")
 
     @pyqtSlot()

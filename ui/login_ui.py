@@ -53,7 +53,7 @@ class Ui_Form(object):
                 "}\n"
                 "\n"
                 "/* Set style for login label and register label in function widget */\n"
-                "#loginLabel, #registerLabel {\n"
+                "#loginLabel, #registerLabel_register_page {\n"
                 "    font-family: \"Viner Hand ITC\";\n"
                 "    font-size: 30px;\n"
                 "}\n"
@@ -82,30 +82,30 @@ class Ui_Form(object):
                 "}\n"
                 "\n"
                 "/* Set style for login and create user button in function widget */\n"
-                "#loginBtn, #registerBtn_register_page, #verify_otp_Btn_register_page {\n"
+                "#loginBtn_login_page, #registerBtn_register_page, #verify_otp_Btn_register_page {\n"
                 "    background-color: #3554d1;\n"
                 "}\n"
                 "\n"
-                "#loginBtn:hover, #loginBtn:pressed, #registerBtn_register_page:hover, #registerBtn_register_page:pressed, #verify_otp_Btn_register_page:hover, #verify_otp_Btn_register_page:pressed {\n"
+                "#loginBtn_login_page:hover, #loginBtn_login_page:pressed, #registerBtn_register_page:hover, #registerBtn_register_page:pressed, #verify_otp_Btn_register_page:hover, #verify_otp_Btn_register_page:pressed {\n"
                 "    background-color: #0000ff;\n"
                 "}\n"
                 "\n"
                 "\n"
                 "/* Set style for exit button in function widget */\n"
-                "#exitBtn {\n"
+                "#exitBtn_login_page {\n"
                 "    background-color: #d10000;\n"
                 "}\n"
                 "\n"
-                "#exitBtn:hover, #exitBtn:pressed {\n"
+                "#exitBtn_login_page:hover, #exitBtn_login_page:pressed {\n"
                 "    background-color: #910000;\n"
                 "}\n"
                 "\n"
                 "/* Set style for register and back button in function widget */\n"
-                "#registerBtn, #backBtn_register_page ,#send_otp_Btn_register_page{\n"
+                "#registerBtn_login_page, #backBtn_register_page ,#send_otp_Btn_register_page{\n"
                 "    background-color: #55aa7f;\n"
                 "}\n"
                 "\n"
-                "#registerBtn:hover, #registerBtn:pressed, #backBtn_register_page:hover, #backBtn_register_page:pressed,#send_otp_Btn_register_page:hover, #send_otp_Btn_register_page:pressed {\n"
+                "#registerBtn_login_page:hover, #registerBtn_login_page:pressed, #backBtn_register_page:hover, #backBtn_register_page:pressed,#send_otp_Btn_register_page:hover, #send_otp_Btn_register_page:pressed {\n"
                 "    background-color: #3aad00;\n"
                 "}\n"
                 "\n"
@@ -181,12 +181,12 @@ class Ui_Form(object):
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setSpacing(10)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label = QtWidgets.QLabel(self.page)
+        self.email_label_login_page = QtWidgets.QLabel(self.page)
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
-        self.verticalLayout_3.addWidget(self.label)
+        self.email_label_login_page.setFont(font)
+        self.email_label_login_page.setObjectName("email_label_login_page")
+        self.verticalLayout_3.addWidget(self.email_label_login_page)
         self.lineEdit = QtWidgets.QLineEdit(self.page)
         self.lineEdit.setMinimumSize(QtCore.QSize(300, 0))
         self.lineEdit.setClearButtonEnabled(True)
@@ -196,12 +196,12 @@ class Ui_Form(object):
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
         self.verticalLayout_4.setSpacing(10)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.label_2 = QtWidgets.QLabel(self.page)
+        self.password_label_login_page = QtWidgets.QLabel(self.page)
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.label_2.setFont(font)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout_4.addWidget(self.label_2)
+        self.password_label_login_page.setFont(font)
+        self.password_label_login_page.setObjectName("password_label_login_page")
+        self.verticalLayout_4.addWidget(self.password_label_login_page)
         self.lineEdit_2 = QtWidgets.QLineEdit(self.page)
         self.lineEdit_2.setMinimumSize(QtCore.QSize(300, 0))
         self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -213,27 +213,27 @@ class Ui_Form(object):
         self.horizontalLayout.setSpacing(5)
         self.horizontalLayout.setObjectName("horizontalLayout")
         
-        self.exitBtn = QtWidgets.QPushButton(self.page)
-        self.exitBtn.setMinimumSize(QtCore.QSize(0, 30))
+        self.exitBtn_login_page = QtWidgets.QPushButton(self.page)
+        self.exitBtn_login_page.setMinimumSize(QtCore.QSize(0, 30))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icon/icon/x-mark-3-48.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.exitBtn.setIcon(icon)
-        self.exitBtn.setObjectName("exitBtn")
-        self.horizontalLayout.addWidget(self.exitBtn)
-        self.registerBtn = QtWidgets.QPushButton(self.page)
-        self.registerBtn.setMinimumSize(QtCore.QSize(0, 30))
+        self.exitBtn_login_page.setIcon(icon)
+        self.exitBtn_login_page.setObjectName("exitBtn_login_page")
+        self.horizontalLayout.addWidget(self.exitBtn_login_page)
+        self.registerBtn_login_page = QtWidgets.QPushButton(self.page)
+        self.registerBtn_login_page.setMinimumSize(QtCore.QSize(0, 30))
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/icon/icon/user-48.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.registerBtn.setIcon(icon1)
-        self.registerBtn.setObjectName("registerBtn")
-        self.horizontalLayout.addWidget(self.registerBtn)
-        self.loginBtn = QtWidgets.QPushButton(self.page)
-        self.loginBtn.setMinimumSize(QtCore.QSize(0, 30))
+        self.registerBtn_login_page.setIcon(icon1)
+        self.registerBtn_login_page.setObjectName("registerBtn_login_page")
+        self.horizontalLayout.addWidget(self.registerBtn_login_page)
+        self.loginBtn_login_page = QtWidgets.QPushButton(self.page)
+        self.loginBtn_login_page.setMinimumSize(QtCore.QSize(0, 30))
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap(":/icon/icon/login-64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.loginBtn.setIcon(icon2)
-        self.loginBtn.setObjectName("loginBtn")
-        self.horizontalLayout.addWidget(self.loginBtn)
+        self.loginBtn_login_page.setIcon(icon2)
+        self.loginBtn_login_page.setObjectName("loginBtn_login_page")
+        self.horizontalLayout.addWidget(self.loginBtn_login_page)
         self.verticalLayout_5.addLayout(self.horizontalLayout)
         self.gridLayout_2.addLayout(self.verticalLayout_5, 1, 1, 1, 1)
         spacerItem4 = QtWidgets.QSpacerItem(79, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -254,23 +254,23 @@ class Ui_Form(object):
         self.verticalLayout_6 = QtWidgets.QVBoxLayout()
         self.verticalLayout_6.setSpacing(30)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.registerLabel = QtWidgets.QLabel(self.page_2)
-        self.registerLabel.setStyleSheet("#registerLabel {\n"
+        self.registerLabel_register_page = QtWidgets.QLabel(self.page_2)
+        self.registerLabel_register_page.setStyleSheet("#registerLabel_register_page {\n"
         "    color: #000;\n"
         "}")
-        self.registerLabel.setAlignment(QtCore.Qt.AlignCenter)
-        self.registerLabel.setObjectName("registerLabel")
-        self.verticalLayout_6.addWidget(self.registerLabel)
+        self.registerLabel_register_page.setAlignment(QtCore.Qt.AlignCenter)
+        self.registerLabel_register_page.setObjectName("registerLabel_register_page")
+        self.verticalLayout_6.addWidget(self.registerLabel_register_page)
         
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
         self.verticalLayout_7.setSpacing(10)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.gmail_label = QtWidgets.QLabel(self.page_2)
+        self.gmail_label_register_page = QtWidgets.QLabel(self.page_2)
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.gmail_label.setFont(font)
-        self.gmail_label.setObjectName("gmail_label")
-        self.verticalLayout_7.addWidget(self.gmail_label)
+        self.gmail_label_register_page.setFont(font)
+        self.gmail_label_register_page.setObjectName("gmail_label_register_page")
+        self.verticalLayout_7.addWidget(self.gmail_label_register_page)
         self.gmail_lineEdit_register_page = QtWidgets.QLineEdit(self.page_2)
         self.gmail_lineEdit_register_page.setMinimumSize(QtCore.QSize(300, 0))
         self.gmail_lineEdit_register_page.setClearButtonEnabled(True)
@@ -281,12 +281,12 @@ class Ui_Form(object):
         self.verticalLayout_name = QtWidgets.QVBoxLayout()
         self.verticalLayout_name.setSpacing(10)
         self.verticalLayout_name.setObjectName("verticalLayout_name")
-        self.name_label = QtWidgets.QLabel(self.page_2)
+        self.name_label_register_page = QtWidgets.QLabel(self.page_2)
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.name_label.setFont(font)
-        self.name_label.setObjectName("name_label")
-        self.verticalLayout_name.addWidget(self.name_label)
+        self.name_label_register_page.setFont(font)
+        self.name_label_register_page.setObjectName("name_label_register_page")
+        self.verticalLayout_name.addWidget(self.name_label_register_page)
         self.name_lineEdit_register_page = QtWidgets.QLineEdit(self.page_2)
         self.name_lineEdit_register_page.setMinimumSize(QtCore.QSize(300, 0))
         self.name_lineEdit_register_page.setClearButtonEnabled(True)
@@ -294,25 +294,25 @@ class Ui_Form(object):
         self.verticalLayout_name.addWidget(self.name_lineEdit_register_page)
         self.verticalLayout_6.addLayout(self.verticalLayout_name)
 
-        self.verticalLayout_8_otp = QtWidgets.QVBoxLayout()
-        self.verticalLayout_8_otp.setSpacing(10)
-        self.verticalLayout_8_otp.setObjectName("verticalLayout_8_otp")
-        self.otp_label = QtWidgets.QLabel(self.page_2)
+        self.verticalLayout_otp = QtWidgets.QVBoxLayout()
+        self.verticalLayout_otp.setSpacing(10)
+        self.verticalLayout_otp.setObjectName("verticalLayout_otp")
+        self.otp_label_register_page = QtWidgets.QLabel(self.page_2)
         font_otp = QtGui.QFont()
         font_otp.setPointSize(10)
-        self.otp_label.setFont(font_otp)
-        self.otp_label.setObjectName("otp_label")
-        self.verticalLayout_8_otp.addWidget(self.otp_label)
+        self.otp_label_register_page.setFont(font_otp)
+        self.otp_label_register_page.setObjectName("otp_label_register_page")
+        self.verticalLayout_otp.addWidget(self.otp_label_register_page)
         self.otp_lineEdit_register_page = QtWidgets.QLineEdit(self.page_2)
         self.otp_lineEdit_register_page.setMinimumSize(QtCore.QSize(300, 0))
         self.otp_lineEdit_register_page.setEchoMode(QtWidgets.QLineEdit.Normal)
         self.otp_lineEdit_register_page.setClearButtonEnabled(True)
         self.otp_lineEdit_register_page.setObjectName("otp_lineEdit_register_page")
-        self.verticalLayout_8_otp.addWidget(self.otp_lineEdit_register_page)
+        self.verticalLayout_otp.addWidget(self.otp_lineEdit_register_page)
         reg_ex = QRegExp("[0-9]{6}")
         self.otp_lineEdit_register_page.setValidator(QRegExpValidator(reg_ex))
+        self.verticalLayout_6.addLayout(self.verticalLayout_otp)
 
-        self.verticalLayout_6.addLayout(self.verticalLayout_8_otp)
         self.horizontalLayout_2_otp = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2_otp.setSpacing(5)
         self.horizontalLayout_2_otp.setObjectName("horizontalLayout_2_otp")
@@ -335,15 +335,15 @@ class Ui_Form(object):
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setSpacing(10)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.label_4 = QtWidgets.QLabel(self.page_2)
+        self.password_label_register_page = QtWidgets.QLabel(self.page_2)
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.label_4.setFont(font)
-        self.label_4.setObjectName("label_4")
-        self.verticalLayout_8.addWidget(self.label_4)
+        self.password_label_register_page.setFont(font)
+        self.password_label_register_page.setObjectName("password_label_register_page")
+        self.verticalLayout_8.addWidget(self.password_label_register_page)
         self.password_lineEdit_register_page = QtWidgets.QLineEdit(self.page_2)
         self.password_lineEdit_register_page.setMinimumSize(QtCore.QSize(300, 0))
-        self.password_lineEdit_register_page.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.password_lineEdit_register_page.setEchoMode(QtWidgets.QLineEdit.Password)
         self.password_lineEdit_register_page.setClearButtonEnabled(True)
         self.password_lineEdit_register_page.setObjectName("password_lineEdit_register_page")
         self.verticalLayout_8.addWidget(self.password_lineEdit_register_page)
@@ -389,18 +389,19 @@ class Ui_Form(object):
         self.titleLabel1.setText(_translate("Form", "MEET U"))
         self.titleLabel2.setText(_translate("Form", "Hand Sign Recognition Model"))
         self.loginLabel.setText(_translate("Form", "Login"))
-        self.label.setText(_translate("Form", "Email"))
-        self.label_2.setText(_translate("Form", "Password"))
-        self.exitBtn.setText(_translate("Form", "Exit"))
-        self.registerBtn.setText(_translate("Form", "Register"))
-        self.loginBtn.setText(_translate("Form", "Login"))
-        self.registerLabel.setText(_translate("Form", "Register"))
-        self.gmail_label.setText(_translate("Form", "Email"))
-        self.name_label.setText(_translate("Form", "Name"))
-        self.otp_label.setText(_translate("Form", "OTP"))
+        self.email_label_login_page.setText(_translate("Form", "Email"))
+        self.password_label_login_page.setText(_translate("Form", "Password"))
+        self.exitBtn_login_page.setText(_translate("Form", "Exit"))
+        self.registerBtn_login_page.setText(_translate("Form", "Register"))
+        self.loginBtn_login_page.setText(_translate("Form", "Login"))
+
+        self.registerLabel_register_page.setText(_translate("Form", "Register"))
+        self.gmail_label_register_page.setText(_translate("Form", "Email"))
+        self.name_label_register_page.setText(_translate("Form", "Name"))
+        self.otp_label_register_page.setText(_translate("Form", "OTP"))
         self.send_otp_Btn_register_page.setText(_translate("Form", "Send OTP"))
         self.verify_otp_Btn_register_page.setText(_translate("Form", "Verify"))
-        self.label_4.setText(_translate("Form", "Password"))
+        self.password_label_register_page.setText(_translate("Form", "Password"))
         self.backBtn_register_page.setText(_translate("Form", "Back"))
         self.registerBtn_register_page.setText(_translate("Form", "Create"))
 from static import resource_rc
