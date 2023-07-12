@@ -1,9 +1,13 @@
 import sys
 from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QMessageBox, QMainWindow, QApplication, \
+    QTableWidgetItem, QPushButton, QHeaderView, \
+    QAbstractItemView, QVBoxLayout, QHBoxLayout, QWidget
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 import cv2
 from firebase_admin_tester import *
+import main_window
 
 class MainWindowCV(QWidget):
     def __init__(self,user,another_user,another_user_name):
@@ -32,7 +36,11 @@ class MainWindowCV(QWidget):
 
     def CancelCall(self):
         CallDataUpdate(self.another_user,"5")
-        self.close()
+        #self.setVisibility(False)
+        self.hide()
+        window = main_window.MainWindow(user_id=self.user)
+        window.show()
+        
 
     def ImageUpdateSlot(self, Image):
         self.FeedLabel.setPixmap(QPixmap.fromImage(Image))

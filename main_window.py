@@ -8,7 +8,7 @@ import waitingCallerRoom
 from ui.main_window_ui import Ui_MainWindow
 from firebase_admin_tester import *
 import backRunning
-
+import tk1
 import threading
 
 #import socket   
@@ -238,9 +238,10 @@ class MainWindow(QMainWindow):
         row = self.table_contact_list.indexAt(button.parent().pos()).row()
         gmail=list(self.contact_list_data[row].keys())[0]
         name=self.contact_list_data[row].get(gmail)
-        self.Root = waitingCallerRoom.MainWindowCV(self.USER_ID,gmail,name)
-        self.Root.show()
-        print(row)
+        tk1.caller(self.USER_ID,gmail,name)
+        #self.Root = waitingCallerRoom.MainWindowCV(self.USER_ID,gmail,name)
+        #self.Root.show()
+        #print(row)
     
     #Delete data from QTableWidget and database
     def delete_contact(self):
@@ -283,7 +284,6 @@ class MainWindow(QMainWindow):
         msgBox.setWindowTitle("Warning")
         msgBox.setText(context)
         msgBox.setStandardButtons(QMessageBox.Close)
-
         msgBox.exec_()
 
     def check(self,email):

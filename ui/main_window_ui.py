@@ -585,8 +585,9 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
     def call(self,MainWindow):
-        self.app=waitingCallerRoom.MainWindowCV()
-        self.app.show()
+        #self.app=waitingCallerRoom.MainWindowCV()
+        #self.app.show()
+        pass
         
         MainWindow.setVisible(False)
     def retranslateUi(self, MainWindow):
