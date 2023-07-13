@@ -9,6 +9,7 @@ import schedule
 from firebase_admin_tester import *
 import tkinter as tk
 from tkinter import messagebox
+import VideoChatCaller
 
 UserID=""
 canReceiveCall=True
@@ -22,10 +23,10 @@ def BackgroundFunction():
         caller=getReceivingCall_CallData(UserID)
         ReceivingCall_CallDataUpdate(UserID,str(2))
 
-        msg_box =  messagebox.askyesno('confirmation', 'Are you sure you want to recieve this call?')
-        if msg_box:
+        msg_box =  messagebox.askquestion('confirmation', str(caller[1])+'('+str(caller[0])+') are calling....\nAre you sure you want to recieve this call?')
+        if msg_box==messagebox.YES:
             ReceivingCall_CallDataUpdate(UserID,str(3))
-            #start calling
+            VideoChatCaller.caller(getIpAddress(caller[0]))
         else:
             ReceivingCall_CallDataUpdate(UserID,str(4))
             canReceiveCall=True

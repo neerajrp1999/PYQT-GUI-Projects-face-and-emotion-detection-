@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QMessageBox
 from PyQt5.QtCore import Qt, QPoint, pyqtSlot
 from PyQt5.QtGui import QMouseEvent, QIcon, QPixmap
-
 from ui.login_ui import Ui_Form
 from main_window import MainWindow
 import re
@@ -13,15 +12,13 @@ class LoginWindow(QWidget):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
 
-        #otp
         self.generated_otp=-10
         self.otp_verified=False
 
         self._startPos = None
         self._endPos = None
         self._tracking = False
-
-        ## initialize QPushButtons in the login window.
+    
         self.ui.backBtn_register_page.setFocusPolicy(Qt.NoFocus)
         self.ui.registerBtn_register_page.setFocusPolicy(Qt.NoFocus)
         self.ui.exitBtn_login_page.setFocusPolicy(Qt.NoFocus)
@@ -29,15 +26,12 @@ class LoginWindow(QWidget):
         self.ui.loginBtn_login_page.setFocusPolicy(Qt.NoFocus)
         self.ui.send_otp_Btn_register_page.setFocusPolicy(Qt.NoFocus)
         self.ui.verify_otp_Btn_register_page.setFocusPolicy(Qt.NoFocus)
-        ## show login window when start app 
+    
         self.ui.funcWidget.setCurrentIndex(0)
 
-        ## hide the frame and background of the app 
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
 
-
-    ## Make the window movable after hide window frame ///////////////////////////
     def mouseMoveEvent(self, a0: QMouseEvent) -> None:
         if self._tracking:
             self._endPos = a0.pos() - self._startPos
@@ -54,7 +48,6 @@ class LoginWindow(QWidget):
             self._startPos = None
             self._endPos = None
 
-
     ## login window 
     @pyqtSlot()
     def on_exitBtn_login_page_clicked(self):
@@ -64,9 +57,7 @@ class LoginWindow(QWidget):
         msgBox.setWindowTitle("Exit?")
         msgBox.setText("Are you sure to EXIT???")
         msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-
         reply = msgBox.exec_()
-
         if reply == QMessageBox.Yes:
             self.close()
         else:
@@ -86,7 +77,6 @@ class LoginWindow(QWidget):
         #main_window = MainWindow(user_id="neerajrp1999@gmail.com")
         #main_window.show()
         #self.close()
-        
         username = self.ui.lineEdit.text().strip()
         password = self.ui.lineEdit_2.text().strip()
         if not self.check(username):
@@ -104,8 +94,7 @@ class LoginWindow(QWidget):
         else:
             main_window = MainWindow(user_id=username)
             main_window.show()
-            self.close()
-        
+            self.close()        
         
     @pyqtSlot()
     def on_verify_otp_Btn_register_page_clicked(self):
