@@ -1,54 +1,91 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jul 10 23:15:10 2023
+from keras.preprocessing.image import ImageDataGenerator
+from keras.models import Sequential
+from keras.layers import Dense,Dropout,Flatten
+from keras.layers import Conv2D,MaxPooling2D
+import os
 
-@author: neera
 
-"""
+train_data_dir='data/train/'
+validation_data_dir='data/test/'
 
-import tkinter as tk
-from PIL import Image, ImageTk
-from imutils.video import VideoStream
-import cv2
-import datetime
 
-class MainWindow:
+train_datagen = ImageDataGenerator(
+					rescale=1./255,
+					rotation_range=30,
+					shear_range=0.3,
+					zoom_range=0.3,
+					horizontal_flip=True,
+					fill_mode='nearest')
 
-    def __init__(self):    
-        self.window = tk.Tk()
-        
-        self.panel = tk.Label(self.window)
-        self.panel.pack(side="top")
-        
-        self.button = tk.Button(self.window, text='Take Photos', command=self.take_photo)
-        self.button.pack(side="bottom")
-        
-        self.stream = VideoStream(0)
-        self.stream.start()
-        
-        self.stop = False
-        self.window.after(100, self.video_loop)
+validation_datagen = ImageDataGenerator(rescale=1./255)
 
-        self.window.wm_protocol("WM_DELETE_WINDOW", self.on_close)
-        self.window.mainloop()
+train_generator = train_datagen.flow_from_directory(
+					train_data_dir,
+					color_mode='grayscale',
+					target_size=(48, 48),
+					batch_size=32,
+					class_mode='categorical',
+					shuffle=True)
 
-    def video_loop(self):
-        frame = self.stream.read()
-        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        self.image = Image.fromarray(image)
-        self.photo = ImageTk.PhotoImage(self.image)
-        self.panel.configure(image=self.photo)  
-        if not self.stop:
-            self.window.after(40, self.video_loop)
+validation_generator = validation_datagen.flow_from_directory(
+							validation_data_dir,
+							color_mode='grayscale',
+							target_size=(48, 48),
+							batch_size=32,
+							class_mode='categorical',
+							shuffle=True)
 
-    def on_close(self):
-        self.stop = True
-        self.stream.stop()
-        self.window.destroy()
-    def take_photo(self):
-        name = datetime.datetime.now().strftime('%Y.%m.%d-%H.%M.%S.png')
-        self.image.save(name, 'PNG')
-        print('saved:', name)
-           
-if __name__ == '__main__':
-    MainWindow()
+
+class_labels=['Angry','Disgust', 'Fear', 'Happy','Neutral','Sad','Surprise']
+
+img, label = train_generator.__next__()
+
+
+model = Sequential()
+
+model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(48,48,1)))
+
+model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.1))
+
+model.add(Conv2D(128, kernel_size=(3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.1))
+
+model.add(Conv2D(256, kernel_size=(3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.1))
+
+model.add(Flatten())
+model.add(Dense(512, activation='relu'))
+model.add(Dropout(0.2))
+
+model.add(Dense(7, activation='softmax'))
+
+model.compile(optimizer = 'adam', loss='categorical_crossentropy', metrics=['accuracy'])
+print(model.summary())
+
+
+train_path = "data/train/"
+test_path = "data/test"
+
+num_train_imgs = 0
+for root, dirs, files in os.walk(train_path):
+    num_train_imgs += len(files)
+    
+num_test_imgs = 0
+for root, dirs, files in os.walk(test_path):
+    num_test_imgs += len(files)
+
+print(num_train_imgs)
+print(num_test_imgs)
+epochs=100
+
+history=model.fit(train_generator,
+                steps_per_epoch=num_train_imgs//32,
+                epochs=epochs,
+                validation_data=validation_generator,
+                validation_steps=num_test_imgs//32)
+
+model.save('model_file.h5')
